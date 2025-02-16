@@ -19,6 +19,8 @@ class TestReservation(unittest.TestCase):
     CUSTOMER_DB_FILE = "customers_test.json"
     RESERVATION_DB_FILE = "reservations_test.json"
 
+    print("-- Pruebas para clase de reservaciones. --")
+
     def setUp(self):
         """Prepara el entorno antes de cada prueba."""
         for file in [

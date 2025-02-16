@@ -14,6 +14,8 @@ class TestCustomer(unittest.TestCase):
 
     DB_FILE = "customers_test.json"
 
+    print("Pruebas para clase cliente.")
+
     def setUp(self):
         """Prepara el entorno antes de cada prueba."""
         if os.path.exists(self.DB_FILE):

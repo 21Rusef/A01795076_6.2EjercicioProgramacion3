@@ -14,6 +14,8 @@ class TestHotel(unittest.TestCase):
 
     DB_FILE = "hotels_test.json"
 
+    print("-- Pruebas para clase Hotel. --")
+
     def setUp(self):
         """Prepara el entorno antes de cada prueba."""
         if os.path.exists(self.DB_FILE):
@@ -24,17 +26,17 @@ class TestHotel(unittest.TestCase):
     def test_create_hotel(self):
         """Prueba la creación de un hotel."""
         Hotel.DB_FILE = self.DB_FILE  # Usamos base de datos de prueba
-        Hotel.create_hotel(1, "Hotel Test", "Ciudad X", 10)
+        Hotel.create_hotel(1, "Hotel Tec", "Mty", 100)
         hotel = Database.get(self.DB_FILE, "hotel_id", 1)
         self.assertIsNotNone(hotel)
-        self.assertEqual(hotel["name"], "Hotel Test")
-        self.assertEqual(hotel["location"], "Ciudad X")
-        self.assertEqual(hotel["rooms"], 10)
+        self.assertEqual(hotel["name"], "Hotel Tec")
+        self.assertEqual(hotel["location"], "Mty")
+        self.assertEqual(hotel["rooms"], 100)
 
     def test_delete_hotel(self):
         """Prueba la eliminación de un hotel."""
         Hotel.DB_FILE = self.DB_FILE
-        Hotel.create_hotel(2, "Hotel ABC", "Ciudad Y", 15)
+        Hotel.create_hotel(2, "Hotel ABC", "Leon", 15)
         Hotel.delete_hotel(2)
         hotel = Database.get(self.DB_FILE, "hotel_id", 2)
         self.assertIsNone(hotel)
@@ -44,19 +46,19 @@ class TestHotel(unittest.TestCase):
         Hotel.DB_FILE = self.DB_FILE
         Hotel.create_hotel(
             3,
-            "Hotel XYZ",
-            "Ciudad Z",
-            20
+            "Hotel Fiesta",
+            "Ags",
+            200
             )
         Hotel.modify_hotel(
             3,
             name="Hotel Nuevo",
-            location="Ciudad Nueva",
+            location="CDMX",
             rooms=25
             )
         hotel = Database.get(self.DB_FILE, "hotel_id", 3)
         self.assertEqual(hotel["name"], "Hotel Nuevo")
-        self.assertEqual(hotel["location"], "Ciudad Nueva")
+        self.assertEqual(hotel["location"], "CDMX")
         self.assertEqual(hotel["rooms"], 25)
 
     def test_reserve_room(self):
